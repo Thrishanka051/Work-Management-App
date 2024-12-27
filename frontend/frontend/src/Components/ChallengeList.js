@@ -14,7 +14,7 @@ export default function ChallengeList(){
 
     const fetchChallenge = async () =>{
         try {
-           const response= await axios.get('http://localhost:8080/challenges');
+           const response= await axios.get('http://backend:8080/challenges');
            setChallenges(response.data);
         } catch (error) {
             console.error('error fetching data', error);
