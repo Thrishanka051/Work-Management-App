@@ -1,4 +1,4 @@
-package com.exampleRTH.challengeApp;
+/*package com.exampleRTH.challengeApp;
 
 import jakarta.persistence.*;
 
@@ -50,5 +50,5 @@ public class User {
         this.challenges = challenges;
     }
 // Getters and setters
-}
+}*/
 
