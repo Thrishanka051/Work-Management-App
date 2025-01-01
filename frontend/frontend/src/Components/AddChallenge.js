@@ -14,7 +14,7 @@ export default function AddChallenge({fetchChallenge}){
         e.preventDefault();
         try {
           const newChallenge = {  month, description };
-          const response = await axios.post('http://backend:8080/challenges', newChallenge);
+          const response = await axios.post('http://localhost:8080/challenges', newChallenge);
           console.log('Student added successfully:', response.data);
           // Reset form fields after successful submission
           setMonth('');

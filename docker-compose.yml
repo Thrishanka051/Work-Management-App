@@ -9,18 +9,37 @@ services:
       - "8080:8080"
     networks:
       - app-network
+    depends_on:
+      - postgres  # Ensure the database starts before the backend
 
   frontend:
     build:
       context: ./frontend/frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:80"
     networks:
       - app-network
     depends_on:
       - backend
 
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  postgres_data:
