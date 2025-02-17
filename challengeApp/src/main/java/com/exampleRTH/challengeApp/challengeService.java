@@ -10,19 +10,21 @@ import java.util.Optional;
 @Service
 public class challengeService {
     //private List< Challenge> challenges= new ArrayList<>();
-    private Long nextId= 1L;
+    //private Long nextId= 1L;
 
     public challengeService() {
     }
+
     public List<Challenge> getAllchallenges(){
         return challengeRepositoy.findAll();
     }
 
     @Autowired
     ChallengeRepositoy challengeRepositoy;
+
     public boolean addChallenge( Challenge challenge){
         if (challenge != null) {
-            challenge.setId(nextId++);
+            
             challengeRepositoy.save(challenge);
             return true;
         }else
@@ -31,8 +33,8 @@ public class challengeService {
 
     public Challenge getChallenge(String month) {
         Optional<Challenge> challenge = challengeRepositoy.findByMonthIgnoreCase(month);
-        return challenge.orElse(null);
-    }
+        return challenge.orElse(null); //if challenge is present return it, else return null. here we can't return optional, so it's use like if else
+        }
 
     public boolean updateChallenge(Long id, Challenge updatedChallenge) {
         Optional<Challenge> challenge= challengeRepositoy.findById(id);
